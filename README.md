@@ -10,9 +10,9 @@ According to [Kendall's notation](https://en.wikipedia.org/wiki/Kendall%27s_nota
 Feel free to reach me and share your thoughts at flavio.gonzaga(at)unifal-mg.edu.br.
 
 
-# Disciplina de Análise de Desempenho
+# Disciplina de Análise de Desempenho [pt-br]
 
-## Simulação de eventos de tempo discreto [pt-br]
+## Simulação de eventos de tempo discreto
 Conteúdo oferecido na disciplina de Análise de Desempenho do curso de Bacharelado em Ciência da Computação da Universidade Federal de Alfenas.
 
 O objetivo é o desenvolvimento de uma simulação de eventos discretos, onde o intervalo entre chegadas ocorre segundo distribuição Exponencial, assim como o tempo de serviço.
