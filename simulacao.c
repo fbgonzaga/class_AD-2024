@@ -64,10 +64,11 @@ int main(){
      */
 
     little en;
+    little ew_chegadas;
+    little ew_saidas;
     inicia_little(&en);
-
-
-
+    inicia_little(&ew_chegadas);
+    inicia_little(&ew_saidas);
 
     while(tempo_decorrido <= tempo_simulacao){
         tempo_decorrido = 
@@ -100,6 +101,14 @@ int main(){
               en.tempo_anterior) * en.num_eventos;
             en.num_eventos++;
             en.tempo_anterior = tempo_decorrido;
+
+            ew_chegadas.soma_areas += 
+              (tempo_decorrido - 
+              ew_chegadas.tempo_anterior) * 
+              ew_chegadas.num_eventos;
+            ew_chegadas.num_eventos++;
+            ew_chegadas.tempo_anterior =
+              tempo_decorrido;
         }else{
             fila--;
             tempo_saida = DBL_MAX;
@@ -120,6 +129,14 @@ int main(){
               en.tempo_anterior) * en.num_eventos;
             en.num_eventos--;
             en.tempo_anterior = tempo_decorrido;
+
+            ew_saidas.soma_areas += 
+              (tempo_decorrido - 
+              ew_saidas.tempo_anterior) * 
+              ew_saidas.num_eventos;
+            ew_saidas.num_eventos++;
+            ew_saidas.tempo_anterior =
+              tempo_decorrido;
         }
     }
 
