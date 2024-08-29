@@ -140,6 +140,15 @@ int main(){
         }
     }
 
+    ew_chegadas.soma_areas += 
+        (tempo_decorrido - 
+        ew_chegadas.tempo_anterior) * 
+        ew_chegadas.num_eventos;
+    ew_saidas.soma_areas += 
+        (tempo_decorrido - 
+        ew_saidas.tempo_anterior) * 
+        ew_saidas.num_eventos;
+
     printf("Maior tamanho de fila alcancado: %d\n",fila_max);
     printf("Ocupacao: %lF\n",soma_ocupacao/tempo_decorrido);
     double en_final = en.soma_areas/tempo_decorrido;
@@ -153,10 +162,6 @@ int main(){
     printf("E[W]: %lF\n",ew_final);
     printf("Erro de Little: %lF\n",
       en_final - lambda * ew_final);
-
-
-
-
 
     return 0;
 }
