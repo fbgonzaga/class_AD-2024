@@ -4,6 +4,12 @@
 #include <time.h>
 #include <float.h>
 
+typedef struct {
+    unsigned long int num_eventos;
+    double tempo_anterior;
+    double soma_areas;
+} little;
+
 double uniforme(){
     double u = rand() / ((double) RAND_MAX + 1);
     //u == 0 --> ln(u) <-- problema
@@ -19,6 +25,12 @@ double gera_tempo(double l){
 double min(double n1, double n2){
     if (n1 < n2) return n1;
     return n2;
+}
+
+void inicia_little(little *n){
+    n->num_eventos = 0;
+    n->soma_areas = 0.0;
+    n->tempo_anterior = 0.0;
 }
 
 int main(){
@@ -47,6 +59,15 @@ int main(){
 
     double soma_ocupacao = 0.0;
 
+    /**
+     * variaveis little
+     */
+
+    little en;
+    inicia_little(&en);
+
+
+
 
     while(tempo_decorrido <= tempo_simulacao){
         tempo_decorrido = 
@@ -71,6 +92,14 @@ int main(){
             tempo_chegada =
             tempo_decorrido +
             gera_tempo(parametro_chegada);
+
+            /**
+             * little
+             */
+            en.soma_areas += (tempo_decorrido - 
+              en.tempo_anterior) * en.num_eventos;
+            en.num_eventos++;
+            en.tempo_anterior = tempo_decorrido;
         }else{
             fila--;
             tempo_saida = DBL_MAX;
@@ -83,11 +112,20 @@ int main(){
                 soma_ocupacao += tempo_saida - 
                 tempo_decorrido;
             }
+
+            /**
+             * little
+             */
+            en.soma_areas += (tempo_decorrido - 
+              en.tempo_anterior) * en.num_eventos;
+            en.num_eventos--;
+            en.tempo_anterior = tempo_decorrido;
         }
     }
 
     printf("Maior tamanho de fila alcancado: %d\n",fila_max);
     printf("Ocupacao: %lF\n",soma_ocupacao/tempo_decorrido);
+    printf("E[N]: %lF\n",en.soma_areas/tempo_decorrido);
 
     return 0;
 }
